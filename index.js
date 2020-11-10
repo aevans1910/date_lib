@@ -1,11 +1,17 @@
+const months = ['January', 'February', 'March', 'April', 'May', 'June',
+'July', 'August', 'September', 'October', 'November', 'December']
+
+const months_abrv = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug',
+'Sep', 'Oct', 'Nov', 'Dec']
+
 class D {
     constructor(...args) {
         this.date = new Date(...args)
         this.chars = {
             "Y": this.year,
             "y": this.year % 100,
-            "M": this.month,
-            "m":this.month[0,2],
+            "M": months[this.month],
+            "m": months_abrv[this.month],
             "D": pad(this.day), //have to pad
             "d": this.day,
             "H": pad(this.hours), //have to pad
