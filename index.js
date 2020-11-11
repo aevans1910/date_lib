@@ -131,15 +131,3 @@ function pad(num) {
     }
     return `${num}`
 }
-
-
-// const d = new D(2019, 0, 2, 3, 4, 5)
-// console.log(d.when()) // 6 months ago
-// const d = new D(2019, 9, 2, 3, 4, 5)
-// console.log(d.when()) // 3 months from now
-const d = new D(2024, 9, 2, 3, 4, 5)
-console.log(d.when()) // 5 years from now
-// const d = new D(2019, 6, 30, 3, 4, 5)
-// console.log(d.when()) // 3 days from now
-// const d = new D()
-// console.log(d.when()) // today
