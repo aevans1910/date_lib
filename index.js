@@ -108,15 +108,15 @@ class D {
         dif /= 60
         dif /= 24
         if (Math.abs(dif) < 31) {
-            return `${dif} days` + (dif < 0 ? `from now` : `ago`)
+            return `${Math.abs(dif.toFixed(0))} days ` + (dif < 0 ? `from now` : `ago`)
         } 
         dif /= 30
         if (Math.abs(dif) < 12) {
-            return `${dif} months` + (dif < 0 ? `from now` : `ago`)
+            return `${Math.abs(dif.toFixed(0))} months ` + (dif < 0 ? `from now` : `ago`)
         } 
         dif /= 12
         if (Math.abs(dif) < 31) {
-            return `${dif} years` + (dif < 0 ? `from now` : `ago`)
+            return `${Math.abs(dif.toFixed(0))} years ` + (dif < 0 ? `from now` : `ago`)
         } 
     }
 }
@@ -133,12 +133,12 @@ function pad(num) {
 }
 
 
-const d = new D(2019, 0, 2, 3, 4, 5)
-console.log(d.when()) // 6 months ago
+// const d = new D(2019, 0, 2, 3, 4, 5)
+// console.log(d.when()) // 6 months ago
 // const d = new D(2019, 9, 2, 3, 4, 5)
 // console.log(d.when()) // 3 months from now
-// const d = new D(2024, 9, 2, 3, 4, 5)
-// console.log(d.when()) // 5 years from now
+const d = new D(2024, 9, 2, 3, 4, 5)
+console.log(d.when()) // 5 years from now
 // const d = new D(2019, 6, 30, 3, 4, 5)
 // console.log(d.when()) // 3 days from now
 // const d = new D()
