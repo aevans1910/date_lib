@@ -23,30 +23,58 @@ class D {
         }
     }
 
+    /** 
+     * Year
+     * @returns Number year of date instance
+     */
     get year() {
         return this.date.getFullYear()
     } 
     
+    /** 
+     * Month
+     * @returns Number month of date instance
+     */
     get month() {
         return this.date.getMonth()
     }
 
+    /** 
+     * Day
+     * @returns Number day of date instance
+     */
     get day() {
         return this.date.getDate()
     }
 
+    /** 
+     * Hour
+     * @returns Number hour of date instance
+     */
     get hours() {
         return this.date.getHours()
     }
     
+    /** 
+     * Minute
+     * @returns Number minute of date instance
+     */
     get mins() {
         return this.date.getMinutes()
     }
     
+    /** 
+     * Second
+     * @returns Number second of date instance
+     */
     get secs() {
         return this.date.getSeconds()
     }
 
+    /** 
+     * Format
+     * @returns String format of date instance
+     */
     format(f=false) {
         if (f === false) {
           return `${this.year} ${this.month} ${this.day}`
@@ -64,37 +92,39 @@ class D {
           return time
         }
     }
+
+    /** 
+     * When
+     * @returns String format of time difference between now and date instance
+     */
+    when() {
+        const today = new Date()
+        let dif = today.getTime() - this.date.getTime()
+        if (dif === 0) {
+            return "Today"
+        }
+        dif /= 1000
+        dif /= 60
+        dif /= 60
+        dif /= 24
+        if (Math.abs(dif) < 31) {
+            return `${dif} days` + (dif < 0 ? `from now` : `ago`)
+        } 
+        dif /= 30
+        if (Math.abs(dif) < 12) {
+            return `${dif} months` + (dif < 0 ? `from now` : `ago`)
+        } 
+        dif /= 12
+        if (Math.abs(dif) < 31) {
+            return `${dif} years` + (dif < 0 ? `from now` : `ago`)
+        } 
+    }
 }
 
-// D.prototype.year = function() {
-//     return this.date.getFullYear()
-// }
-
-// D.prototype.month = function() {
-//     return this.date.getMonth()
-// }
-
-// D.prototype.day = function() {
-//     return this.date.getDate()
-// }
-
-
-// D.prototype.hours = function() {
-//     return this.date.getHours()
-// }
-
-// D.prototype.mins = function() {
-//     return this.date.getMinutes()
-// }
-
-// D.prototype.secs = function() {
-//     return this.date.getSeconds()
-// }
-
-// D.prototype.format = function() {
-//     return `${this.year()} ${this.month()} ${this.day()}`
-// }
-
+/** 
+ * Pad
+ * @returns Number pads single numbers of date instance
+ */
 function pad(num) {
     if (num < 10) {
         return `0${num}`
@@ -102,29 +132,14 @@ function pad(num) {
     return `${num}`
 }
 
-// function format(f=false) {
-//     if (f === false) {
-//       return `${this.year} ${months_f[this.month]} ${this.day}`
-//     }
-//     else {
-//       let time = ""
-//       for (let i = 0; i < f.length; i += 1) {
-//         if ((/[a-zA-Z]/).test(f[i])) {
-//           time += this.chars[f[i]]
-//         }
-//         else {
-//           time += f[i]
-//         }
-//       }
-//       return time
-//     }
-// }
 
-const d = new D(2017, 0, 2, 3, 4, 5)
-// console.log(d.chars["D"])
-// console.log(pad(d.dat))
-console.log(d.format())              // 2017 January 02
-console.log(d.format('y/m/d'))       // 17/Jan/2
-console.log(d.format('H:I:S'))       // 03:04:05
-console.log(d.format('h:i:s'))       // 3:4:5
-console.log(d.format('Y-M-D h:I:S')) // 2017-January-02 3:04:05 
+const d = new D(2019, 0, 2, 3, 4, 5)
+console.log(d.when()) // 6 months ago
+// const d = new D(2019, 9, 2, 3, 4, 5)
+// console.log(d.when()) // 3 months from now
+// const d = new D(2024, 9, 2, 3, 4, 5)
+// console.log(d.when()) // 5 years from now
+// const d = new D(2019, 6, 30, 3, 4, 5)
+// console.log(d.when()) // 3 days from now
+// const d = new D()
+// console.log(d.when()) // today
